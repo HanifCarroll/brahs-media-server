@@ -6,7 +6,7 @@
       "tsc": "tsc",
       "test": "jest",
       "start": "set debug=* && ts-node-dev --require dotenv/config  --respawn --transpileOnly ./src/index.ts",
-      "prod": "tsc && node ./build/app.js",
+      "prod": "tsc && node ./build/index.js",
       "migration:run": "ts-node ./node_modules/typeorm/cli.js migration:run"
    },
    "dependencies": {
