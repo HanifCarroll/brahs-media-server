@@ -3,7 +3,7 @@ import { MediaService } from '.';
 
 export const getMediaByService = async (req: Request, res: Response): Promise<void> => {
   const mediaService = new MediaService();
-  const { service } = req.body;
+  const { service } = req.params;
   const media = await mediaService.findByService(service);
 
   res.send(media);

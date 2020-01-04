@@ -12,7 +12,7 @@ export class MediaService {
 
   public async findByService(service: string): Promise<Media[]> {
     const media = await this.mediaRepository.find({
-      where: { service },
+      where: `"service" ILIKE '${service}'`,
     });
 
     return media;

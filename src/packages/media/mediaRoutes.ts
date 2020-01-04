@@ -6,11 +6,13 @@ import { postMedia } from './postMedia';
 
 const mediaRouter = Router();
 
-mediaRouter.get('/', wrapAsync(getMedia));
-// mediaRouter.get('/', [checkJwt, checkRole(['ADMIN'])], wrapAsync(getUsers));
+mediaRouter.get('/', [checkJwt, checkRole(['MEMBER', 'ADMIN'])], wrapAsync(getMedia));
 
-mediaRouter.get('/:service', wrapAsync(getMediaByService));
-// mediaRouter.get('/:service', [checkJwt, checkRole(['ADMIN'])], wrapAsync(getUsers));
+mediaRouter.get(
+  '/:service',
+  [checkJwt, checkRole(['MEMBER', 'ADMIN'])],
+  wrapAsync(getMediaByService),
+);
 
 mediaRouter.post('/', wrapAsync(postMedia));
 
