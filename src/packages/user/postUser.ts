@@ -9,7 +9,7 @@ export const postUser = async (req: Request, res: Response): Promise<void> => {
   const user = new User();
   user.username = username;
   user.password = password;
-  user.role = role;
+  user.role = role || 'MEMBER';
 
   const errors = await validate(user);
   if (errors.length > 0) {
@@ -22,7 +22,7 @@ export const postUser = async (req: Request, res: Response): Promise<void> => {
   try {
     await userService.save(user);
   } catch (e) {
-    res.status(409).send('username already in use');
+    res.status(409).send('Username already in use');
     return;
   }
 
