@@ -16,6 +16,10 @@ userRouter.post('/', wrapAsync(postUser));
 
 userRouter.patch('/:id([0-9]+)', [checkJwt, checkRole(['ADMIN'])], wrapAsync(patchUser));
 
-userRouter.delete('/:id([0-9]+)', [checkJwt, checkRole(['ADMIN'])], wrapAsync(deleteUser));
+userRouter.delete(
+  '/:id([0-9]+)',
+  [checkJwt, checkRole(['ADMIN'])],
+  wrapAsync(deleteUser),
+);
 
 export { userRouter };

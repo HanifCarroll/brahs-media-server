@@ -3,7 +3,7 @@ import { User } from '../typeorm/entity/user';
 import { UserService } from '../packages/user/userService';
 import { get } from 'lodash';
 
-export const checkRole = (roles: Array<string>): Function => {
+export const checkRole = (roles: Array<string>) => {
   return async (_req: Request, res: Response, next: NextFunction): Promise<void> => {
     //Get the user ID from previous midleware
     const id = get(res, 'locals.jwtPayload.userId', null);
