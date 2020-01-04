@@ -2,7 +2,11 @@ import { Repository, getRepository, DeleteResult } from 'typeorm';
 import { User } from '../../typeorm/entity';
 
 export class UserService {
-  constructor(private userRepository: Repository<User> = getRepository(User)) {}
+  private userRepository: Repository<User>;
+
+  constructor() {
+    this.userRepository = getRepository(User);
+  }
 
   public async findAll(): Promise<User[]> {
     const users = await this.userRepository.find({
