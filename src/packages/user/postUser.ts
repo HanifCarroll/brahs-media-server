@@ -1,7 +1,9 @@
 import { Request, Response } from 'express';
+import * as jwt from 'jsonwebtoken';
 import { User } from '../../typeorm/entity/user';
 import { validate } from 'class-validator';
 import { UserService } from './userService';
+import config from '../../config/config';
 
 export const postUser = async (req: Request, res: Response): Promise<void> => {
   const userService = new UserService();
@@ -26,5 +28,14 @@ export const postUser = async (req: Request, res: Response): Promise<void> => {
     return;
   }
 
-  res.status(201).send('User created');
+  const token = jwt.sign(
+    {
+      userId: user.id,
+      username: user.username,
+    },
+    config.jwtSecret,
+    { expiresIn: '1h' },
+  );
+
+  res.status(201).send(token);
 };
