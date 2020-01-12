@@ -16,7 +16,7 @@ export const login = async (req: Request, res: Response): Promise<void> => {
   try {
     user = await userService.findByUsername(username);
   } catch (error) {
-    res.status(401).send();
+    res.status(401).send(error);
   }
 
   if (!user.checkPassword(password)) {
