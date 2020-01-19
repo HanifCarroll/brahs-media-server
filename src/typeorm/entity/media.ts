@@ -6,30 +6,30 @@ export class Media {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @Column({ nullable: true })
   title: string;
 
-  @Column()
+  @Column({ nullable: true })
   authorName: string;
 
-  @Column()
+  @Column({ nullable: true })
   authorUrl: string;
 
-  @Column()
+  @Column({ nullable: true })
   description: string;
 
-  @Column()
+  @Column({ nullable: true })
   url: string;
 
-  @Column()
+  @Column({ nullable: true })
   thumbnailUrl: string;
 
-  @Column({ type: 'timestamp with time zone' })
+  @Column({ nullable: true, type: 'timestamp with time zone' })
   timePosted: Date;
 
-  @Column()
+  @Column({ nullable: true })
   postedBy: string;
 
-  @Column()
+  @Column({ nullable: true })
   service: string;
 }
